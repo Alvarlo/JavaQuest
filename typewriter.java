@@ -10,5 +10,7 @@ public class typewriter {
                 Thread.currentThread().interrupt();
             }
         }
+
+
     }
 }
