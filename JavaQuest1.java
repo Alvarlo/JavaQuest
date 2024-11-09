@@ -78,6 +78,9 @@ public class JavaQuest1 {
                 nombreE = "Slime";
                 break;
         }
+
+        double PorcentajevidaE = (double) (vidaE * 15) /100; // esto es para el patrón de ataque cuando tiene menos de un 15% de vida
+
         System.out.println("Te enfrentas a : " + nombreE);
         System.out.println("VidaE = " + vidaE);
         System.out.println("AtaqueE = " + ataqueE);
@@ -86,6 +89,129 @@ public class JavaQuest1 {
 
         /*
         Apartado 3: Implementación de la batalla (4 puntos)
+        Inicia la batalla por turnos entre el jugador y el enemigo.
+        En cada turno, el jugador puede elegir entre atacar o defenderse.
+        Implementa un sistema de ataque y defensa que tome en cuenta las estadísticas de los personajes y enemigos.
+        Actualiza los puntos de vida de cada uno después de cada turno.
+        */
+
+
+
+        System.out.println("*************************");
+        System.out.println("prepatate para la batalla");
+        System.out.println("*************************");
+
+        int vidaT = 0, vidaTE = 0; //Esto es vida temporal en caso de que se escoga escudo
+        int turno = 1;
+        int A;  //es la variable de ataque especial que si no, no puedo seguier con el codigo
+        int bajahpE = 0, curar =0, turnoE = 0;
+        boolean comprobacion = true;
+
+       while (vida!=0 && vidaE!=0){
+
+           System.out.println("escoge que vas a relaizar:");
+           System.out.println("- Ataque");
+           System.out.println("- Defensa");
+           System.out.println("- Habilidad especial");
+           System.out.println("*************************");
+
+           String seleccionTurno = scl.nextLine();
+
+           vidaE = vidaE + vidaTE;
+
+           switch (seleccionTurno){
+
+               case "Ataque":
+                   vidaE = vidaE - ataque;
+                   break;
+
+               case "Defensa":
+                   vidaT =+ defensa;
+                   break;
+            /*
+            case "Habilidad especial":
+
+                break;
+            */ //Esto lo definimos mas tarde a ver que hacemos
+           }
+
+           vidaE = vidaE - vidaTE;
+           vidaTE = 0;
+
+           System.out.println("Vida = " + vida);
+           System.out.println("Ataque = " + ataque);
+           System.out.println("Defensa = " + defensa);
+           System.out.println("********************");
+           System.out.println(nombreE);
+           System.out.println("VidaE = " + vidaE);
+           System.out.println("AtaqueE = " + ataqueE);
+           System.out.println("DefensaE = " + defensaE);
+           System.out.println("********************");
+           System.out.println("prepatate ahora le toca al " + nombreE);
+           System.out.println("*************************");
+
+           vida = vida + vidaT;
+
+            // Aqui empieza a fallar el codigo de combate
+
+           while (PorcentajevidaE<=vida) {
+               for (int i = 2; i < turno; i++) {
+                   if (turno % i == 0) {
+                       comprobacion = false;
+                       break;
+                   }
+               }
+               if (comprobacion)
+                   vida = vida - ataqueE;
+               if (turno % 2 == 0)
+                   vidaTE = +defensaE;
+               else
+                   A = 0;
+           }
+
+           while (PorcentajevidaE>=vida){
+               switch (bajahpE){
+                   case 0:
+                       curar = (int) (Math.random()*15+10);
+                       vidaE =+ curar;
+                       break;
+                   case 1:
+                       turnoE = (int) (Math.random()*2);
+                       switch (turnoE){
+                           case 0:
+                               ataqueE = vida - ataqueE;
+                               break;
+                           case 1:
+                               vidaTE =+ defensa;
+                               break;
+                       }
+                       break;
+                   case 2:
+                       A=0;
+                       break;
+               }
+            }
+
+           vida = vida - vidaT;
+           vidaT = 0;
+
+           System.out.println("Vida = " + vida);
+           System.out.println("Ataque = " + ataque);
+           System.out.println("Defensa = " + defensa);
+           System.out.println("********************");
+           System.out.println(nombreE);
+           System.out.println("VidaE = " + vidaE);
+           System.out.println("AtaqueE = " + ataqueE);
+           System.out.println("DefensaE = " + defensaE);
+           System.out.println("********************");
+           System.out.println("prepatate ahora le toca al " + nombreE);
+           System.out.println("*************************");
+
+       }
+
+
+
+        /*
         Apartado 4: Finalización de la batalla (0.5 puntos)
         Apartado 5: Interfaz de usuario (0.5 puntos)
         Apartado 6: Generación de sprites (0.5 puntos)
