@@ -117,6 +117,7 @@ public class JavaQuestAlvaro {
         System.out.println("Vida " + nombreE + " = " + vidaE);
         System.out.println("Ataque " + nombreE + "= " + ataqueE);
         System.out.println("Defensa " + nombreE + " = " + defensaE);
+        System.out.println("**********************************************+");
 
 
         /*
