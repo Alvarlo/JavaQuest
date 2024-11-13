@@ -71,9 +71,10 @@ public class JavaQuestAlvaro {
                 }
 
          */
-        System.out.println("Vida = " + vida);
-        System.out.println("Ataque = " + ataque);
-        System.out.println("Defensa = " + defensa);
+
+        System.out.println(" Tu Vida es de " + vida);
+        System.out.println("Tu ataque es de " + ataque);
+        System.out.println("Tu defensa es de " + defensa);
 
         System.out.println("**********************************");
         /*
@@ -119,11 +120,15 @@ public class JavaQuestAlvaro {
 
         // double PorcentajevidaE = (double) (vidaE * 15) /100; // esto es para el patrón de ataque cuando tiene menos de un 15% de vida
 
-        System.out.println("Te enfrentas a : " + nombreE);
-        System.out.println("Vida " + nombreE + " = " + vidaE);
-        System.out.println("Ataque " + nombreE + "= " + ataqueE);
-        System.out.println("Defensa " + nombreE + " = " + defensaE);
-
+        System.out.println("¡Cuidado! Ha aparecido un enemigo");
+        System.out.println("**********************************");
+        System.out.println("Ten cuidado puede ser una pelea difícil");
+        System.out.println("**********************************");
+        System.out.println("Te enfrentas a un " + nombreE);
+        System.out.println("Su vida es de " + vidaE);
+        System.out.println("Su ataque es de " + ataqueE);
+        System.out.println("Su defensa es de " + defensaE);
+        System.out.println("**********************************");
 
         /*
         Apartado 3: Implementación de la batalla (4 puntos)
@@ -142,23 +147,38 @@ public class JavaQuestAlvaro {
 
 
             System.out.println("Turno " + turno);
+            System.out.println("**********************************");
             System.out.println("Qué quieres hacer: ");
             System.out.println("- Atacar");
             System.out.println("- Defender");
+            System.out.println("**********************************");
             eleccion = scl.nextLine();
 
             if (eleccion.equalsIgnoreCase(atacar)){
                 vidaE -= (ataque -(defensaE/2));
-                System.out.println("Has atacado, el enemigo tiene " + vidaE + " puntos de vida restantes");
+                //System.out.println("Has atacado, el enemigo tiene " + vidaE + " puntos de vida restantes");
             } else if (eleccion.equalsIgnoreCase(defender)) {
                 vidaDefensa = vida + (defensa);
-                System.out.println("Te defiendes, aumentando tu vida a " + vidaDefensa + " durante este turno");
+                //System.out.println("Te defiendes, aumentando tu vida a " + vidaDefensa + " durante este turno");
             }else {
                 System.out.println("Respuesta no válida");
                 continue;
             }
 
-            System.out.println("El enemigo te ataca, quitandote " + ataqueE + " puntos de vida");
+            System.out.println("**********************************");
+            System.out.println(seleccionClase);
+            for (int x = 0; x < vida / 10; x++) {
+                System.out.print("|");
+            }
+            System.out.println(vida);
+            System.out.println(nombreE);
+            for (int x = 0; x < vidaE / 10; x++) {
+                System.out.print("|");
+            }
+            System.out.println(vidaE);
+            System.out.println("**********************************");
+
+            //System.out.println("El enemigo te ataca, quitandote " + ataqueE + " puntos de vida");
             if (turno != 1) {
 
                 for (int j = 2; j < turno; j++) {
@@ -171,13 +191,16 @@ public class JavaQuestAlvaro {
 
             if (flagPrimo){
                 if (eleccion.equalsIgnoreCase(atacar)){
-                    System.out.println("Tu vida actual es  " + (vida-ataqueE));
+                    //System.out.println("Tu vida actual es  " + (vida-ataqueE));
+
                     vida -= ataqueE;
                 }else {
                     if ((vidaDefensa-ataqueE)>vida){
-                        System.out.println("Has bloqueado todo el ataque, tu vida actual es  " + vida);
+                        System.out.println("Has bloqueado todo el ataque, tu vida actual no varía");
+                        //System.out.println("Has bloqueado todo el ataque, tu vida actual es  " + vida);
                     }else {
-                        System.out.println("Tu vida actual es  " + (vidaDefensa-ataqueE));
+                        System.out.println("El enemigo te ha atacado");
+                        //System.out.println("Tu vida actual es  " + (vidaDefensa-ataqueE));
                         vida -= (vidaDefensa-ataqueE);
                     }
                 }
@@ -191,7 +214,18 @@ public class JavaQuestAlvaro {
 
             }
 
-
+            System.out.println("**********************************");
+            System.out.println(seleccionClase);
+            for (int x = 0; x < vida / 10; x++) {
+                System.out.print("|");
+            }
+            System.out.println(vida);
+            System.out.println(nombreE);
+            for (int x = 0; x < vidaE / 10; x++) {
+                System.out.print("|");
+            }
+            System.out.println(vidaE);
+            System.out.println("**********************************");
 
             /*
             if (eleccion.equalsIgnoreCase(atacar)){
@@ -209,7 +243,7 @@ public class JavaQuestAlvaro {
              */
 
 
-            System.out.println("La vida del enemigo es " + vidaE);
+            //System.out.println("La vida del enemigo es " + vidaE);
             System.out.println("Termina el turno:");
             turno++;
         }

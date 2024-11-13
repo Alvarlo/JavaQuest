@@ -147,5 +147,12 @@ public class DangeonAndStone {
             else
         System.out.println("The number isn't prime.");
 
+            /*
+        for (int i = 0; i < vida del jugador / 10; i++) {
+            System.out.println("|");
+            }
+            */
+
+
     }
 }
