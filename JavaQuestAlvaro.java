@@ -373,7 +373,7 @@ public class JavaQuestAlvaro {
         turno++;
     }
 
-        if (vidaE < 0){
+        if (vidaE <= 0){
             System.out.println("Has ganado!! Has obtenido un pin del fari con musiquita");
         }else {
             System.out.println("Vaya.... has perdido, hasta luego! ");
