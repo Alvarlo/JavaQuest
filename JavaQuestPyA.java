@@ -285,7 +285,7 @@ public class JavaQuestPyA {
         String corazon = "❤\uFE0F";
 
 
-        int enrage = (int) (vidaE*0.15);
+        final int ENRAGE = (int) (vidaE*0.15);
         int curacionE = (int) (vidaE*0.10);
 
         boolean flagPrimo;
@@ -315,7 +315,7 @@ public class JavaQuestPyA {
 
             //If defensa enemigo
 
-            if ((contadorEnrage== 1) && (vidaE>enrage) && !flagPrimo && turno % 2 == 0) {
+            if ((contadorEnrage== 1) && (vidaE>ENRAGE) && !flagPrimo && turno % 2 == 0) {
 
 
                 if (eleccion.equalsIgnoreCase(atacar) || (eleccion.equals("1"))) {
@@ -336,7 +336,7 @@ public class JavaQuestPyA {
                 }
 
             // If ataque enemigo
-            }else if ((contadorEnrage== 1) && (vidaE>enrage) && flagPrimo) {
+            }else if ((contadorEnrage== 1) && (vidaE>ENRAGE) && flagPrimo) {
 
                 if (eleccion.equalsIgnoreCase(atacar) || (eleccion.equals("1"))) {
                     vida -= ataqueE;
@@ -357,7 +357,7 @@ public class JavaQuestPyA {
                     vida -= ataqueE;
                 }
             //Ataque especial enemigo
-            }else if ((contadorEnrage== 1) && (vidaE>enrage) && !flagPrimo && turno % 2 == 1) {
+            }else if ((contadorEnrage== 1) && (vidaE>ENRAGE) && !flagPrimo && turno % 2 == 1) {
 
                 if (eleccion.equalsIgnoreCase(atacar) || (eleccion.equals("1"))) {
                     vidaE -= ataque ;
@@ -379,7 +379,7 @@ public class JavaQuestPyA {
                 }
 
             //Enrage
-            }else if (vidaE <= enrage || contadorEnrage >=2){
+            }else if (vidaE <= ENRAGE || contadorEnrage >=2){
                 System.out.println("*                                                            El enemigo está en estado de Enrage *");
                 //sout enrage
 
