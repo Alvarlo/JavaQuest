@@ -38,42 +38,20 @@ public class JavaQuestAlvaro {
 
         if (seleccionClase.equalsIgnoreCase("Guerrero")) {
             System.out.println("Has seleccionado Guerrero, tus estadísticas son: ");
-            vida = (int) (Math.random() * 31 + 200);
+            vida = (int) (Math.random() * 31 + 160);
             ataque = (int) (Math.random() * 16 + 10);
-            defensa = (int) (Math.random() * 21 + 50);
+            defensa = (int) (Math.random() * 21 + 20);
         } else if (seleccionClase.equalsIgnoreCase("Mago")) {
             System.out.println("Has seleccionado Mago, tus estadísticas son: ");
-            vida = (int) (Math.random() * 31 + 60);
-            ataque = (int) (Math.random() * 16 + 30);
+            vida = (int) (Math.random() * 31 + 110);
+            ataque = (int) (Math.random() * 26 + 20);
             defensa = (int) (Math.random() * 11 + 5);
         } else if (seleccionClase.equalsIgnoreCase("Arquero")) {
             System.out.println("Has seleccionado Arquero, tus estadísticas son: ");
-            vida = (int) (Math.random() * 31 + 60);
+            vida = (int) (Math.random() * 31 + 130);
             ataque = (int) (Math.random() * 16 + 20);
             defensa = (int) (Math.random() * 16 + 15);
         }
-        /* switch (seleccionClase){
-            case "Guerrero":
-                System.out.println("Has seleccionado Guerrero");
-                vida = (int) (Math.random()*31+60);
-                ataque = (int) (Math.random()*16+20);
-                defensa = (int) (Math.random()*21+50);
-                break;
-            case "Mago":
-                System.out.println("Has seleccionado Guerrero");
-                vida = (int) (Math.random()*31+60);
-                ataque = (int) (Math.random()*16+20);
-                defensa = (int) (Math.random()*21+50);
-                break;
-            case "Arquero":
-                System.out.println("Has seleccionado Guerrero");
-                vida = (int) (Math.random()*31+60);
-                ataque = (int) (Math.random()*16+20);
-                defensa = (int) (Math.random()*21+50);
-                break;
-                }
-
-         */
 
         System.out.println("Tu Vida es de " + vida);
         System.out.println("Tu ataque es de " + ataque);
@@ -96,21 +74,21 @@ public class JavaQuestAlvaro {
                 //Goblin
                 vidaE = (int) (Math.random() * 21 + 100);
                 ataqueE = (int) (Math.random() * 11 + 10);
-                defensaE = (int) (Math.random() * 6 + 1);
+                defensaE = (int) (Math.random() * 6 + 15);
                 nombreE = "Goblin";
                 break;
             case 1:
                 //Bandido
                 vidaE = (int) (Math.random() * 21 + 105);
                 ataqueE = (int) (Math.random() * 11 + 15);
-                defensaE = (int) (Math.random() * 6 + 5);
+                defensaE = (int) (Math.random() * 6 + 15);
                 nombreE = "Bandido";
                 break;
             case 2:
                 //Slime
                 vidaE = (int) (Math.random() * 21 + 100);
                 ataqueE = (int) (Math.random() * 11 + 5);
-                defensaE = (int) (Math.random() * 6 + 5);
+                defensaE = (int) (Math.random() * 6 + 25);
                 nombreE = "Slime";
                 break;
             /*case 3:
@@ -121,7 +99,6 @@ public class JavaQuestAlvaro {
                 nombreE = "Slime";*/
         }
 
-        // double PorcentajevidaE = (double) (vidaE * 15) /100; // esto es para el patrón de ataque cuando tiene menos de un 15% de vida
 
         System.out.println("¡Cuidado! Ha aparecido un enemigo");
         System.out.println("**********************************");
@@ -142,21 +119,17 @@ public class JavaQuestAlvaro {
         */
 
         String atacar = "atacar", defender = "defender", eleccion = "";
-        int turno = 1;
-        int contadorEnrage = 1;
-
-        int vidaDefensa = vida;
-        boolean flagPrimo;
-        int ataqueEspEnemigo = ataqueE * 2;
+        int turno = 1, contadorEnrage = 1, enrageAtoDef = 0, vidaDefensa = vida, ataqueEspEnemigo = ataqueE * 3;
+        int vidaDefensaE = vidaE;
 
         int enrage = (int) (vidaE*0.15);
         int curacionE = (int) (vidaE*0.10);
-        int enrageAtoDef = 0;
 
+        boolean flagPrimo;
 
         while (vida > 0 && vidaE > 0) {
 
-
+            // Verifica si es o no primo el turno
             flagPrimo = true;
             if (turno != 1) {
 
@@ -167,117 +140,90 @@ public class JavaQuestAlvaro {
                 }
             } else flagPrimo = false;
 
-
+            //Decisión ataque / defensa
             System.out.println("Turno " + turno);
-            System.out.println("**********************************");
-            System.out.println("Qué quieres hacer: ");
-            System.out.print("- 1. Atacar");
-            System.out.println("     - 2. Defender");
-            System.out.println("**********************************");
+            System.out.println("**************************************************************************************");
+            System.out.println("*                                   Qué quieres hacer:                               *");
+            System.out.print("*                       - 1. Atacar                     ");
+            System.out.println("     - 2. Defender                    *");
+            System.out.println("**************************************************************************************");
             eleccion = scl.nextLine();
 
-            if ((contadorEnrage== 1) && (vidaE>enrage) && flagPrimo == false && turno % 2 == 0) {
+            //If defensa enemigo
 
-                //el enemigo bloquea
-                System.out.println("No te quitan vida, ya que el enemigo está denfendiéndose");
+            if ((contadorEnrage== 1) && (vidaE>enrage) && !flagPrimo && turno % 2 == 0) {
+
 
                 if (eleccion.equalsIgnoreCase(atacar) || (eleccion.equals("1"))) {
-                    vidaE -= (ataque - (defensaE));
-
-                    System.out.println("Has atacado, el enemigo tiene " + vidaE + " puntos de vida restantes");
+                    vidaDefensaE = (vidaE + defensaE);
+                    System.out.println("El enemigo se defiende, aumentando su vida a " + vidaDefensaE + " durante este turno");
+                    if ((vidaDefensaE - ataque) > vidaE){
+                        System.out.println("El enemigo ha bloqueado todo el ataque");
+                    }else {
+                        System.out.println("Rompes la defensa de tu enemigo, atacándole");
+                        vidaE = (vidaDefensaE - ataque);
+                    }
                 } else if (eleccion.equalsIgnoreCase(defender) || (eleccion.equals("2"))) {
                     vidaDefensa = vida + (defensa);
                     System.out.println("Los dos os defendéis, os quedais mirando a shiro");
                 } else {
                     System.out.println("Pierdes el turno");
-                    System.out.println("Tu vida actual es  " + (vida - ataqueE));
-                    vida -= ataqueE;
-                    continue;
                 }
-                /*
-                System.out.println("**********************************");
-                System.out.println(seleccionClase);
-                for (int x = 0; x < vida / 10; x++) {
-                    System.out.print("|");
-                }
-                System.out.println(vida);
-                System.out.println(nombreE);
-                for (int x = 0; x < vidaE / 10; x++) {
-                    System.out.print("|");
-                }
-                System.out.println(vidaE);
-                System.out.println("**********************************");
 
-                 */
+            // If ataque enemigo
+            }else if ((contadorEnrage== 1) && (vidaE>enrage) && flagPrimo) {
 
-            }else if ((contadorEnrage== 1) && (vidaE>enrage) && flagPrimo==true) {
-                // el enemigo ataca
                 if (eleccion.equalsIgnoreCase(atacar) || (eleccion.equals("1"))) {
-                    System.out.println("Tu vida actual es  " + (vida - ataqueE));
                     vida -= ataqueE;
-
                     vidaE -= ataque ;
-                    System.out.println("Has atacado, el enemigo tiene " + vidaE + " puntos de vida restantes");
 
                 }else if (eleccion.equalsIgnoreCase(defender) || (eleccion.equals("2"))){
                     vidaDefensa = vida + (defensa);
                     System.out.println("Te defiendes, aumentando tu vida a " + vidaDefensa + " durante este turno");
                     if ((vidaDefensa - ataqueE) > vida) {
                         System.out.println("Has bloqueado todo el ataque, tu vida actual no varía");
-                        //System.out.println("Has bloqueado todo el ataque, tu vida actual es  " + vida);
-                    } else {
-                        //System.out.println("El enemigo te ha atacado");
-                        System.out.println("El enemigo te ha atacado, tu vida actual es  " + (vidaDefensa - ataqueE));
+                    }else {
+                        System.out.println("El enemigo te ha atacado");
                         vida = (vidaDefensa - ataqueE);
                     }
-
-                }else {
-
+                }else{
                     System.out.println("Pierdes el turno");
-                    System.out.println("Tu vida actual es  " + (vida - ataqueE));
                     vida -= ataqueE;
-                    continue;
-
                 }
-            }else if ((contadorEnrage== 1) && (vidaE>enrage) && flagPrimo == false && turno % 2 == 1) {
-            //ataque especial enemigo
+            //Ataque especial enemigo
+            }else if ((contadorEnrage== 1) && (vidaE>enrage) && !flagPrimo && turno % 2 == 1) {
+
                 if (eleccion.equalsIgnoreCase(atacar) || (eleccion.equals("1"))) {
                     vidaE -= ataque ;
-                    System.out.println("Has atacado, el enemigo tiene " + vidaE + " puntos de vida restantes");
-                    System.out.println("El enemigo usa su HabEsp, tu vida actual es  " + (vida - ataqueEspEnemigo));
+                    System.out.println("El enemigo usa su Habilidad Especial");
                     vida -= ataqueEspEnemigo;
                 }else if (eleccion.equalsIgnoreCase(defender) || (eleccion.equals("2"))){
                     vidaDefensa = vida + (defensa);
                     System.out.println("Te defiendes, aumentando tu vida a " + vidaDefensa + " durante este turno");
                     if ((vidaDefensa - ataqueEspEnemigo) > vida) {
-                        System.out.println("El enemigo usa su HabEsp,pero has bloqueado todo el ataque, tu vida actual no varía");
-                        //System.out.println("Has bloqueado todo el ataque, tu vida actual es  " + vida);
+                        System.out.println("El enemigo usa su Habilidad Especial, pero has bloqueado todo el ataque");
                     } else {
-                        //System.out.println("El enemigo te ha atacado");
-                        System.out.println("El enemigo usa su HabEsp, tu vida actual es  " + (vidaDefensa - ataqueEspEnemigo));
+                        System.out.println("El enemigo usa su Habilidad Especial");
                         vida = (vidaDefensa - ataqueEspEnemigo);
                     }
                 }else {
-
                     System.out.println("Pierdes el turno");
-                    System.out.println("Tu vida actual es  " + (vida - ataqueE));
-                    vida -= ataqueE;
-                    continue;
-
+                    vida -= ataqueEspEnemigo;
                 }
 
+            //Enrage
             }else if (vidaE < enrage || contadorEnrage >=2){
-                System.out.println("El enemigo está en Enrage");
-                // ENRAGE: Patrón:
+                System.out.println("El enemigo está en estado de Enrage");
+                //sout enrage
 
                 switch (contadorEnrage) {
                     case 1: // 1: Curarse
                         vidaE += curacionE;
-                        System.out.println("El enemigo se cura " + curacionE + " ptos de vida, hasta un total de " + vidaE);
+                        System.out.println("El enemigo se cura " + curacionE + " puntos de vida");
                         if (eleccion.equalsIgnoreCase(atacar) || (eleccion.equals("1"))) {
 
                             vidaE -= ataque;
-                            System.out.println("Has atacado, el enemigo tiene " + vidaE + " puntos de vida restantes");
+                            System.out.println("Has atacado");
 
                         } else if (eleccion.equalsIgnoreCase(defender) || (eleccion.equals("2"))) {
                             vidaDefensa = vida + (defensa);
@@ -288,31 +234,32 @@ public class JavaQuestAlvaro {
                     case 2: // 2: Defensa / Ataque (50%)
                         enrageAtoDef = (int) (Math.random()*2);
 
-
                         if (eleccion.equalsIgnoreCase(atacar) || (eleccion.equals("1"))) {
                             if (enrageAtoDef == 0){ //enemigo ataca
                                 vidaE -= ataque;
-                                System.out.println("Has atacado, el enemigo tiene " + vidaE + " puntos de vida restantes");
-
                                 vida -= ataqueE;
-                                System.out.println("El enemigo te ataca, tu vida actual es  " + (vida - ataqueE));
-                            }else if (enrageAtoDef == 1){
-                                vidaE -= (ataque - (defensaE));
-                                System.out.println("El enemigo se defiende");
-                                System.out.println("Has atacado, el enemigo tiene " + vidaE + " puntos de vida restantes");
+                                System.out.println("El enemigo te ataca");
+                            }else if (enrageAtoDef == 1){ //enemigo se defiende
+                                vidaDefensaE = (vidaE + defensaE);
+                                System.out.println("El enemigo se defiende, aumentando su vida a " + vidaDefensaE + " durante este turno");
+                                if ((vidaDefensaE - ataque) > vidaE){
+                                    System.out.println("El enemigo ha bloqueado todo el ataque");
+                                }else {
+                                    System.out.println("Rompes la defensa de tu enemigo, atacándole");
+                                    vidaE = (vidaDefensaE - ataque);
+                                }
                             }
 
                         } else if (eleccion.equalsIgnoreCase(defender) || (eleccion.equals("2"))) {
                             vidaDefensa = vida + (defensa);
                             System.out.println("Te defiendes, aumentando tu vida a " + vidaDefensa + " durante este turno");
-                            if (enrageAtoDef == 0){ //enemigo defiende
+                            if (enrageAtoDef == 0){ //enemigo ataca
 
                                 if ((vidaDefensa - ataqueE) > vida) {
-                                    System.out.println("El enemigo ataca, pero has bloqueado todo el ataque, tu vida actual no varía");
-                                    //System.out.println("Has bloqueado todo el ataque, tu vida actual es  " + vida);
+                                    System.out.println("El enemigo ataca, has bloqueado todo el ataque");
+
                                 } else {
-                                    //System.out.println("El enemigo te ha atacado");
-                                    System.out.println("El enemigo usa su HabEsp, tu vida actual es  " + (vidaDefensa - ataqueE));
+                                    System.out.println("El enemigo te ha atacado");
                                     vida = (vidaDefensa - ataqueE);
                                 }
                             }else if (enrageAtoDef == 1){
@@ -320,12 +267,11 @@ public class JavaQuestAlvaro {
                             }
                         }
                         break;
-                    case 3: // 3: Hab Especial
+                    case 3: // 3: Habilidad Especial Enemigo
                         if (eleccion.equalsIgnoreCase(atacar) || (eleccion.equals("1"))) {
                             vidaE -= ataque ;
-                            System.out.println("Has atacado, el enemigo tiene " + vidaE + " puntos de vida restantes");
 
-                            System.out.println("El enemigo usa su HabEsp, tu vida actual es  " + (vida - ataqueEspEnemigo));
+                            System.out.println("El enemigo usa su Habilidad Especial");
                             vida -= ataqueEspEnemigo;
                             contadorEnrage = 0;
 
@@ -333,12 +279,10 @@ public class JavaQuestAlvaro {
                             vidaDefensa = vida + (defensa);
                             System.out.println("Te defiendes, aumentando tu vida a " + vidaDefensa + " durante este turno");
                             if ((vidaDefensa - ataqueEspEnemigo) > vida) {
-                                System.out.println("El enemigo usa su HabEsp,pero has bloqueado todo el ataque, tu vida actual no varía");
-                                //System.out.println("Has bloqueado todo el ataque, tu vida actual es  " + vida);
+                                System.out.println("El enemigo usa su HabEsp, has bloqueado todo el ataque");
                                 contadorEnrage = 0;
                             } else {
-                                //System.out.println("El enemigo te ha atacado");
-                                System.out.println("El enemigo usa su HabEsp, tu vida actual es  " + (vidaDefensa - ataqueEspEnemigo));
+                                System.out.println("El enemigo usa su Habilidad Especial");
                                 vida = (vidaDefensa - ataqueEspEnemigo);
                                 contadorEnrage = 0;
                             }
@@ -346,37 +290,35 @@ public class JavaQuestAlvaro {
                         }
                         System.out.println("El enemigo finaliza su fase de Enrage");
                         break;
-
                 }
-
                 contadorEnrage++;
             }
 
-            /*
-            if (eleccion.equalsIgnoreCase(atacar)){
-                System.out.println("Tu vida actual es  " + (vida-ataqueE));
-                vida -= ataqueE;
-            }else {
-                if ((vidaDefensa-ataqueE)>vida){
-                    System.out.println("Has bloqueado todo el ataque, tu vida actual es  " + vida);
-                }else {
-                    System.out.println("Tu vida actual es  " + (vidaDefensa-ataqueE));
-                    vida -= (vidaDefensa-ataqueE);
+                System.out.println("**********************************");
+                System.out.println(seleccionClase);
+                for (int x = 0; x < vida / 2; x++) {
+                    System.out.print("♡");
                 }
-            }
+                System.out.println(" "+vida);
+                System.out.println(nombreE);
+                for (int x = 0; x < vidaE / 2; x++) {
+                    System.out.print("♡");
+                }
+                System.out.println(" "+vidaE);
+                System.out.println("**********************************");
 
-             */
 
 
-        //System.out.println("La vida del enemigo es " + vidaE);
         System.out.println("Termina el turno:");
         turno++;
     }
 
         if (vidaE <= 0){
-            System.out.println("Has ganado!! Has obtenido un pin del fari con musiquita");
-        }else {
+            System.out.println("Has ganado!! Has obtenido un palo");
+        }else if (vida <= 0){
             System.out.println("Vaya.... has perdido, hasta luego! ");
+        }else{
+            System.out.println("Los dos palmáis");
         }
 
 
@@ -384,9 +326,7 @@ public class JavaQuestAlvaro {
         /*
         Apartado 5: Interfaz de usuario (0.5 puntos)
         Apartado 6: Generación de sprites (0.5 puntos)
-        Apartado 7: Enemigo inteligente (1 punto)
-                    Fase 1 (mientras tenga más de un 15% de vida)
-                    Fase 2 (mientras tenga menos de un 15% de vida)
+
          */
 
     }
