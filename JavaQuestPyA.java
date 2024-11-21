@@ -501,7 +501,7 @@ public class JavaQuestPyA {
         if (vidaE <= 0 && vida <= 0){
             System.out.println("*                                       Los dos palmáis                                          *");
         }else if (vida <= 0){
-            System.out.println("*                                     Vaya...Has perdido                                         *");
+            System.out.println("*                                     Vaya... Has perdido                                        *");
         }else{
             System.out.println("*                              Has ganado!! Has obtenido un palo                                 *");
         }
