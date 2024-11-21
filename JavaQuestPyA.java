@@ -12,9 +12,9 @@ public class JavaQuestPyA {
         String text1 = "Bienvenido a JavaQuest"
                 + "\nSelecciona tu clase"
                 + "\n "
-                + "\n- Guerrero"
-                + "\n- Mago"
-                + "\n- Arquero" +
+                + "\n1 - Guerrero"
+                + "\n2 - Mago"
+                + "\n3 - Arquero" +
                 "\n";
 
        /*
@@ -183,7 +183,7 @@ public class JavaQuestPyA {
 
         System.out.println("********** ********** ********** ********** ********** ********** ********** ********** **********");
 
-        if (seleccionClase.equalsIgnoreCase("Guerrero")) {
+        if (seleccionClase.equalsIgnoreCase("Guerrero") || seleccionClase.equals("1")) {
             System.out.println(guerrero);
             System.out.println("********** ********** ********** ********** ********** ********** ********** ********** **********");
             System.out.println("Has seleccionado Guerrero, tus estadísticas son:                                                 *");
@@ -191,7 +191,7 @@ public class JavaQuestPyA {
             vida = (int) (Math.random() * 31 + 160);
             ataque = (int) (Math.random() * 16 + 10);
             defensa = (int) (Math.random() * 21 + 20);
-        } else if (seleccionClase.equalsIgnoreCase("Mago")) {
+        } else if (seleccionClase.equalsIgnoreCase("Mago") || seleccionClase.equals("2")) {
             System.out.println(mago);
             System.out.println("********** ********** ********** ********** ********** ********** ********** ********** **********");
             System.out.println("* Has seleccionado Mago, tus estadísticas son:                                                   *");
@@ -199,7 +199,7 @@ public class JavaQuestPyA {
             vida = (int) (Math.random() * 31 + 110);
             ataque = (int) (Math.random() * 26 + 20);
             defensa = (int) (Math.random() * 11 + 10);
-        } else if (seleccionClase.equalsIgnoreCase("Arquero")) {
+        } else if (seleccionClase.equalsIgnoreCase("Arquero") || seleccionClase.equals("3")) {
             System.out.println(arquero);
             System.out.println("********** ********** ********** ********** ********** ********** ********** ********** **********");
             System.out.println("* Has seleccionado Arquero, tus estadísticas son:                                                *");
